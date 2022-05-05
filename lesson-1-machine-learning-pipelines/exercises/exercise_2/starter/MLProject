@@ -1,15 +1,11 @@
 name: Download Project
 
-conda_env: conda.yaml
+conda_env: conda.yml
 entry_points:
   main:
     parameters:
-      file_url: https://raw.githubusercontent.com/scikit-learn/scikit-learn/4dfdfb4e1bb3719628753a4ece995a1b2fa5312a/sklearn/datasets/data/iris.csv
-      artifact_name: iris
-      artifact_type: raw_data
-      artifact_description: "This data sets consists of 3 different types of irises’ (Setosa, Versicolour, and Virginica) petal and sepal length"
-    command: "python donwload_data.py"
-  validate:
-    parameters:
-      data_file: path
-    command: "python validate.py {data_file}"
+      file_url: {type: uri, default: "https://raw.githubusercontent.com/scikit-learn/scikit-learn/4dfdfb4e1bb3719628753a4ece995a1b2fa5312a/sklearn/datasets/data/iris.csv"}
+      artifact_name: {type: string, default: "iris"}
+      artifact_type: {type: string, default: "raw_data"}
+      artifact_description: {type: string, default: "This data sets consists of 3 different types of irises’ (Setosa, Versicolour, and Virginica) petal and sepal length"}
+    command: "python download_data.py --file_url {file_url} --artifact_name {artifact_name} --artifact_type {artifact_type} --artifact_description {artifact_description}"
