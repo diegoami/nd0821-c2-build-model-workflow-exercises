@@ -2,7 +2,10 @@ import mlflow
 import os
 import hydra
 from omegaconf import DictConfig
+import wandb
+import logging
 
+logger = logging.getLogger(__name__)
 
 # This automatically reads in the configuration
 @hydra.main(config_name='config')
@@ -32,7 +35,34 @@ def go(config: DictConfig):
     # NOTE: use os.path.join(root_path, "process_data") to get the path
     # to the "process_data" component
     ##################
+    os.path.join(root_path, "process_data")
 
+    _ = mlflow.run(
+        os.path.join(root_path, "process_data"),
+        "main",
+        parameters={
+            "input_artifact": "iris.csv:latest",
+            "artifact_name": "cleaned_data.csv",
+            "artifact_type": "raw_data",
+            "artifact_description": "Cleaned Data"
+        },
+    )
+
+    logger.info("Creating run in project exercise_1")
+    run = wandb.init(project="exercise_1", job_type="use_file")
+
+    logger.info("Getting artifact")
+
+    # YOUR CODE HERE: get the artifact and store its local path in the variable "artifact_path"
+    # HINT: you can get the artifact path by using the "file()" method
+
+    artifact = run.use_artifact("cleaned_data.csv:latest")
+    artifact_path = artifact.file()
+
+    logger.info("Artifact content:")
+    with open(artifact_path, "r") as fp:
+        content = fp.read()
+        print(content)
 
 
 if __name__ == "__main__":
