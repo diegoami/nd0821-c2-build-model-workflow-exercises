@@ -1,4 +1,4 @@
-name: download_data
+name: exercise_4b
 conda_env: conda.yml
 
 entry_points:

@@ -42,21 +42,22 @@ def go(config: DictConfig):
         "main",
         parameters={
             "input_artifact": "iris.csv:latest",
-            "artifact_name": "cleaned_data.csv",
+            "artifact_name": "clean_data.csv",
             "artifact_type": "raw_data",
             "artifact_description": "Cleaned Data"
         },
     )
 
     logger.info("Creating run in project exercise_1")
-    run = wandb.init(project="exercise_1", job_type="use_file")
+    run = wandb.init(project= config["main"]["project_name"], job_type="use_file")
 
     logger.info("Getting artifact")
+
 
     # YOUR CODE HERE: get the artifact and store its local path in the variable "artifact_path"
     # HINT: you can get the artifact path by using the "file()" method
 
-    artifact = run.use_artifact("cleaned_data.csv:latest")
+    artifact = run.use_artifact("clean_data.csv:latest")
     artifact_path = artifact.file()
 
     logger.info("Artifact content:")

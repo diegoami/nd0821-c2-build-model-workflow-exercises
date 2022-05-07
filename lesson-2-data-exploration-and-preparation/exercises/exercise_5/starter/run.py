@@ -13,7 +13,6 @@ def go(args):
 
     run = wandb.init(project="exercise_5", job_type="process_data")
 
-    ## YOUR CODE HERE
     pass
 
 
