@@ -1,4 +1,4 @@
-name: download_data
+name: exercise_12b
 channels:
   - conda-forge
   - defaults

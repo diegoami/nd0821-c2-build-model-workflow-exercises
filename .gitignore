@@ -1,2 +1,5 @@
 .DS_Store
 .idea
+/lesson-4-training-validation-experiment-tracking/exercises/exercise_13/starter/mlruns/
+/lesson-4-training-validation-experiment-tracking/exercises/exercise_13/starter/artifacts/
+/lesson-4-training-validation-experiment-tracking/exercises/exercise_13/starter/wandb/
